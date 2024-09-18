@@ -80,12 +80,12 @@
             // Récupérer les utilisateurs depuis le localStorage
             const users = JSON.parse(localStorage.getItem('users')) || [];
 
-            // Recherche de l'utilisateur correspondant
+            // Vérification si l'utilisateur existe
             const user = users.find(user => user.identifiant === identifiant && user.password === password);
 
             if (user) {
-                // Redirection vers la page d'accueil ou tableau de bord après une connexion réussie
-                window.location.href = "../dashboard/lock/index.html"; // Remplacez par la destination souhaitée
+                // Redirection vers une autre page après connexion réussie
+                window.location.href = "../dashboard"; // Remplace par ta page de destination
             } else {
                 errorMessage.textContent = 'Identifiant ou mot de passe incorrect.';
             }
