@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page de conexion au Evaluation de rentré - France</title>
+    <title>Page de connexion au Evaluation de rentrée - France</title>
     <style>
         body {
             margin: 0;
@@ -37,16 +37,7 @@
             color: #777;
         }
 
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        input[type="password"] {
+        input[type="text"], input[type="password"] {
             width: 100%;
             padding: 10px;
             margin-top: 10px;
@@ -80,7 +71,8 @@
 <body>
 
     <div class="password-box">
-        <h2>Veuillez entrer le mot de passe</h2>
+        <h2>Veuillez entrer vos identifiants</h2>
+        <input type="text" id="identifiant" placeholder="Identifiants">
         <input type="password" id="password" placeholder="Mot de passe">
         <button onclick="checkPassword()">Valider</button>
         <p id="error-message" class="error"></p>
@@ -89,15 +81,17 @@
 
     <script>
         function checkPassword() {
+            const identifiant = document.getElementById('identifiant').value;
             const password = document.getElementById('password').value;
             const errorMessage = document.getElementById('error-message');
-            if (password === 'Rayan') {
+            
+            if (identifiant === 'LuxaUser' && password === 'Rayan') {
                 // Déclencher une redirection après 5 secondes
                 setTimeout(function() {
                     window.location.href = "00"; // Remplacez "00" par l'URL souhaitée
                 }, 5000);
             } else {
-                errorMessage.textContent = 'Mot de passe incorrect. Veuillez réessayer.';
+                errorMessage.textContent = 'Identifiants ou mot de passe incorrects. Veuillez réessayer.';
             }
         }
     </script>
