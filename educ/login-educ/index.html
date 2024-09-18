@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page avec mot de passe</title>
+    <title>Page de conexion au Evaluation de rentré - France</title>
     <style>
         body {
             margin: 0;
@@ -35,6 +35,15 @@
             right: 0;
             font-size: 12px;
             color: #777;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
         }
 
         input[type="password"] {
@@ -75,7 +84,7 @@
         <input type="password" id="password" placeholder="Mot de passe">
         <button onclick="checkPassword()">Valider</button>
         <p id="error-message" class="error"></p>
-        <div class="footer">© 2024 Collège Jules Verne - Angoulême</div>
+        <div class="footer">© 2024 - Luxa Production</div>
     </div>
 
     <script>
@@ -85,7 +94,7 @@
             if (password === 'Rayan') {
                 // Déclencher une redirection après 5 secondes
                 setTimeout(function() {
-                    window.location.href = "https://dla-jv-angouleme.github.io/home/"; // Remplacez "00" par l'URL souhaitée
+                    window.location.href = "00"; // Remplacez "00" par l'URL souhaitée
                 }, 5000);
             } else {
                 errorMessage.textContent = 'Mot de passe incorrect. Veuillez réessayer.';
