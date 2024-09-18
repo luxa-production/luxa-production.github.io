@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion Éléve</title>
+    <title>Connexion Élève</title>
     <style>
         body {
             margin: 0;
@@ -72,23 +72,19 @@
     </div>
 
     <script>
-        // Simuler les utilisateurs du dashboard
-        const users = [
-            { identifiant: 'eleve1', password: 'mdp1' },
-            { identifiant: 'eleve2', password: 'mdp2' },
-            { identifiant: 'eleve3', password: 'mdp3' }
-        ];
-
         function validateLogin() {
             const identifiant = document.getElementById('identifiant').value;
             const password = document.getElementById('password').value;
             const errorMessage = document.getElementById('error-message');
 
+            // Récupérer les utilisateurs depuis le localStorage
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+
             // Recherche de l'utilisateur correspondant
             const user = users.find(user => user.identifiant === identifiant && user.password === password);
 
             if (user) {
-                // Redirection vers la page d'accueil après une connexion réussie
+                // Redirection vers la page d'accueil ou tableau de bord après une connexion réussie
                 window.location.href = "../dashboard"; // Remplacez par la destination souhaitée
             } else {
                 errorMessage.textContent = 'Identifiant ou mot de passe incorrect.';
