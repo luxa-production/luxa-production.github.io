@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page avec mot de passe</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000; /* Fond noir */
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        
+        .password-box {
+            background-color: #fff;
+            color: #000;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            width: 300px;
+            text-align: center;
+            position: relative;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            font-size: 12px;
+            color: #777;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            background-color: #000;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #333;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="password-box">
+        <h2>Veuillez entrer le mot de passe</h2>
+        <input type="password" id="password" placeholder="Mot de passe">
+        <button onclick="checkPassword()">Valider</button>
+        <p id="error-message" class="error"></p>
+        <div class="footer">© 2024 Collège Jules Verne - Angoulême</div>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
+            if (password === 'Rayan') {
+                // Déclencher une redirection après 5 secondes
+                setTimeout(function() {
+                    window.location.href = "https://dla-jv-angouleme.github.io/home/"; // Remplacez "00" par l'URL souhaitée
+                }, 5000);
+            } else {
+                errorMessage.textContent = 'Mot de passe incorrect. Veuillez réessayer.';
+            }
+        }
+    </script>
+
+</body>
+</html>
