@@ -111,7 +111,11 @@
     </div>
 
     <script>
-        let users = [];
+        // Charger les utilisateurs depuis le localStorage au démarrage
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+
+        // Afficher les utilisateurs existants
+        displayUsers();
 
         function addUser() {
             const identifiant = document.getElementById('identifiant').value;
@@ -132,6 +136,11 @@
 
             // Ajouter l'utilisateur à la liste
             users.push({ identifiant, password });
+
+            // Sauvegarder les utilisateurs dans le localStorage
+            localStorage.setItem('users', JSON.stringify(users));
+
+            // Réafficher les utilisateurs
             displayUsers();
 
             // Réinitialiser les champs
@@ -141,7 +150,13 @@
         }
 
         function deleteUser(index) {
+            // Supprimer l'utilisateur de la liste
             users.splice(index, 1);
+
+            // Mettre à jour le localStorage après suppression
+            localStorage.setItem('users', JSON.stringify(users));
+
+            // Réafficher les utilisateurs
             displayUsers();
         }
 
