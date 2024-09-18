@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion et Inscription</title>
+    <style>
+        /* Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Body Styling */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f6f5f7;
+            margin: 0;
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            width: 900px;
+            max-width: 100%;
+            height: 600px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 
+                        0 10px 10px rgba(0, 0, 0, 0.22);
+            overflow: hidden;
+        }
+
+        /* Form Container */
+        .form-container {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 50%;
+            padding: 50px;
+            transition: all 0.6s ease-in-out;
+        }
+
+        /* Sign In Container */
+        .sign-in-container {
+            left: 0;
+            z-index: 2;
+        }
+
+        /* Sign Up Container */
+        .sign-up-container {
+            left: 0;
+            opacity: 0;
+            z-index: 1;
+            transform: translateX(100%);
+        }
+
+        /* Active State for Sign Up */
+        .container.right-panel-active .sign-up-container {
+            transform: translateX(0);
+            opacity: 1;
+            z-index: 5;
+        }
+
+        /* Hidden State for Sign In */
+        .container.right-panel-active .sign-in-container {
+            transform: translateX(100%);
+            opacity: 0;
+            z-index: 1;
+        }
+
+        /* Overlay Container */
+        .overlay-container {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 100;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        /* Overlay Background */
+        .overlay {
+            background: #ff416c;
+            background: linear-gradient(to right, #ff4b2b, #ff416c);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+            position: relative;
+            left: -100%;
+            height: 100%;
+            width: 200%;
+            transform: translateX(0);
+            transition: transform 0.6s ease-in-out;
+        }
+
+        /* Move Overlay on Right Panel Active */
+        .container.right-panel-active .overlay {
+            transform: translateX(50%);
+        }
+
+        /* Overlay Panels */
+        .overlay-panel {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            top: 0;
+            height: 100%;
+            width: 50%;
+            transform: translateX(0);
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .overlay-left {
+            transform: translateX(-20%);
+        }
+
+        .container.right-panel-active .overlay-left {
+            transform: translateX(0);
+        }
+
+        .overlay-right {
+            right: 0;
+            transform: translateX(0);
+        }
+
+        .container.right-panel-active .overlay-right {
+            transform: translateX(20%);
+        }
+
+        /* Form Styling */
+        form {
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-weight: bold;
+            margin: 0 0 20px 0;
+        }
+
+        p {
+            font-size: 14px;
+            font-weight: 100;
+            line-height: 20px;
+            letter-spacing: 0.5px;
+            margin: 20px 0 30px;
+        }
+
+        input {
+            background-color: #eee;
+            border: none;
+            padding: 12px 15px;
+            margin: 8px 0;
+            width: 100%;
+        }
+
+        button {
+            border-radius: 20px;
+            border: 1px solid #ff4b2b;
+            background-color: #ff4b2b;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 12px 45px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: transform 80ms ease-in;
+        }
+
+        button:hover {
+            cursor: pointer;
+            background-color: #ff3b1c;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        button.ghost {
+            background-color: transparent;
+            border-color: #ffffff;
+        }
+
+        .ghost:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .ghost:active {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form id="signupForm">
+                <h1>Créer un compte</h1>
+                <input type="email" id="signupEmail" placeholder="Email" required />
+                <input type="password" id="signupPassword" placeholder="Mot de passe" required />
+                <button type="submit">S'inscrire</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form id="loginForm">
+                <h1>Connexion</h1>
+                <input type="email" id="loginEmail" placeholder="Email" required />
+                <input type="password" id="loginPassword" placeholder="Mot de passe" required />
+                <button type="submit">Se connecter</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Bienvenue!</h1>
+                    <p>Pour rester connecté avec nous, veuillez vous connecter avec vos informations personnelles</p>
+                    <button class="ghost" id="signIn">Se connecter</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Salut !</h1>
+                    <p>Entrez vos informations personnelles pour créer un compte</p>
+                    <button class="ghost" id="signUp">S'inscrire</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Gestion des animations de la page de connexion/inscription
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
+
+        signUpButton.addEventListener('click', () => {
+            container.classList.add("right-panel-active");
+        });
+
+        signInButton.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+        });
+
+        // Gestion des comptes utilisateur
+        let users = [];
+
+        function saveUsers() {
+            localStorage.setItem('users', JSON.stringify(users));
+        }
+
+        function loadUsers() {
+            const loadedUsers = localStorage.getItem('users');
+            if (loadedUsers) {
+                users = JSON.parse(loadedUsers);
+            }
+        }
+
+        function findUser(email) {
+            return users.find(user => user.email === email);
+        }
+
+        document.getElementById('signupForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+
+            if (findUser(email)) {
+                alert("Cet email est déjà utilisé !");
+                return;
+            }
+
+            users.push({ email, password });
+            saveUsers();
+            alert("Inscription réussie ! Vous pouvez maintenant vous connecter.");
+            container.classList.remove("right-panel-active");
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            const user = findUser(email);
+
+            if (user && user.password === password) {
+                alert("Connexion réussie !");
+            } else {
+                alert("Email ou mot de passe incorrect.");
+            }
+        });
+
+        loadUsers();
+    </script>
+</body>
+</html>
